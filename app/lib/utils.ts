@@ -1,15 +1,21 @@
-export const formatDateToLocal = (
-  dateStr: string,
-  locale: string = 'en-US',
-) => {
-  const date = new Date(dateStr);
-  const options: Intl.DateTimeFormatOptions = {
-    day: 'numeric',
-    month: 'short',
-    year: 'numeric',
-  };
-  const formatter = new Intl.DateTimeFormat(locale, options);
-  return formatter.format(date);
+export const formatTimeAgo = (unixTime: number): string => {
+  const diff = Date.now() - unixTime * 1000;
+  if (diff <= 0) return '0 minutes ago';
+
+  const elapsed = new Date(diff);
+  if (elapsed.getUTCFullYear() - 1970) {
+    return `${elapsed.getUTCFullYear() - 1970} ${elapsed.getUTCFullYear() - 1970 === 1 ? 'year ago' : 'years ago'}`;
+  } else if (elapsed.getUTCMonth()) {
+    return `${elapsed.getUTCMonth()} ${elapsed.getUTCMonth() === 1 ? 'month ago' : 'months ago'}`;
+  } else if (elapsed.getUTCDate() - 1) {
+    return `${elapsed.getUTCDate() - 1} ${elapsed.getUTCDate() - 1 === 1 ? 'day ago' : 'days ago'}`;
+  } else if (elapsed.getUTCHours()) {
+    return `${elapsed.getUTCHours()} ${elapsed.getUTCHours() === 1 ? 'hour ago' : 'hours ago'}`;
+  } else if (elapsed.getUTCMinutes()) {
+    return `${elapsed.getUTCMinutes()} ${elapsed.getUTCMinutes() === 1 ? 'minute ago' : 'minutes ago'}`;
+  } else {
+    return '0 minutes ago';
+  }
 };
 
 export const generatePagination = (currentPage: number, totalPages: number) => {
