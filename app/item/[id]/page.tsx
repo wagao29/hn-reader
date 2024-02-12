@@ -2,8 +2,11 @@
 import { fetchItem } from '@/app/lib/data';
 import { ItemId } from '@/app/lib/definition';
 import { formatTimeAgo } from '@/app/lib/utils';
+import { Comment } from '@/app/ui/comment';
 import { Icons } from '@/app/ui/icons';
+import { CommentSkeleton } from '@/app/ui/skeletons';
 import DOMPurify from 'isomorphic-dompurify';
+import { Suspense } from 'react';
 
 export default async function Page({ params }: { params: { id: ItemId } }) {
   const item = await fetchItem(params.id);
@@ -25,6 +28,16 @@ export default async function Page({ params }: { params: { id: ItemId } }) {
           __html: DOMPurify.sanitize(item.text),
         }}
       />
+      <div className="flex flex-col gap-5">
+        {item.kids &&
+          item.kids.map((itemId) => {
+            return (
+              <Suspense key={itemId} fallback={<CommentSkeleton />}>
+                <Comment itemId={itemId} />
+              </Suspense>
+            );
+          })}
+      </div>
     </main>
   );
 }
