@@ -21,11 +21,12 @@ export default function Pagination({ totalPages }: { totalPages: number }) {
 
   return (
     <div className="inline-flex">
-      <PaginationArrow
-        direction="left"
-        href={createPageURL(currentPage - 1)}
-        isDisabled={currentPage <= 1}
-      />
+      {currentPage > 1 && (
+        <PaginationArrow
+          direction="left"
+          href={createPageURL(currentPage - 1)}
+        />
+      )}
 
       <div className="flex -space-x-px">
         {allPages.map((page, index) => {
@@ -48,11 +49,12 @@ export default function Pagination({ totalPages }: { totalPages: number }) {
         })}
       </div>
 
-      <PaginationArrow
-        direction="right"
-        href={createPageURL(currentPage + 1)}
-        isDisabled={currentPage >= totalPages}
-      />
+      {currentPage < totalPages && (
+        <PaginationArrow
+          direction="right"
+          href={createPageURL(currentPage + 1)}
+        />
+      )}
     </div>
   );
 }
@@ -87,33 +89,20 @@ function PaginationNumber({
 function PaginationArrow({
   href,
   direction,
-  isDisabled,
 }: {
   href: string;
   direction: 'left' | 'right';
-  isDisabled?: boolean;
 }) {
-  const className = clsx(
-    'flex h-10 w-10 items-center justify-center rounded-md text-gray',
-    {
-      'pointer-events-none': isDisabled,
-      'mr-2 md:mr-4': direction === 'left',
-      'ml-2 md:ml-4': direction === 'right',
-    },
-  );
-
-  const icon =
-    direction === 'left' ? (
-      <ChevronLeftIcon className="w-4" />
-    ) : (
-      <ChevronRightIcon className="w-4" />
-    );
-
-  return isDisabled ? (
-    <div className={className}>{icon}</div>
-  ) : (
-    <Link className={className} href={href}>
-      {icon}
+  return (
+    <Link
+      className="flex h-10 w-10 items-center justify-center rounded-md text-gray"
+      href={href}
+    >
+      {direction === 'left' ? (
+        <ChevronLeftIcon className="w-4" />
+      ) : (
+        <ChevronRightIcon className="w-4" />
+      )}
     </Link>
   );
 }
