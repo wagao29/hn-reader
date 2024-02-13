@@ -13,8 +13,8 @@ export default async function Page({ params }: { params: { id: ItemId } }) {
   if (!item) return null;
 
   return (
-    <main className="mx-20 my-10 flex flex-col">
-      <h1 className="text-2xl">{item.title}</h1>
+    <main className="mx-5 my-10 flex flex-col md:mx-20">
+      <h1 className="text-xl">{item.title}</h1>
       <div className="flex w-full items-center justify-between text-sm text-gray">
         <Icons score={item.score} descendants={item.descendants} />
         <div className="flex gap-2">
