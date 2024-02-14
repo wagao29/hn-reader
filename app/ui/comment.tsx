@@ -9,7 +9,7 @@ export async function Comment({ itemId }: { itemId: ItemId }) {
   if (!item || item.dead || item.deleted) return null;
 
   return (
-    <div className="w-full rounded-xl bg-white px-4 pb-2 pt-4">
+    <div className="w-full rounded-xl bg-white px-4 pb-2 pt-4 shadow-md">
       <div
         dangerouslySetInnerHTML={{
           __html: DOMPurify.sanitize(item.text),

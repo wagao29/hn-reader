@@ -14,7 +14,7 @@ export async function Card({ itemId }: { itemId: ItemId }) {
     : '/ogp-placeholder.svg';
 
   return (
-    <div className="grid-item col-span-1 w-80 rounded-xl bg-white">
+    <div className="grid-item col-span-1 w-80 rounded-xl bg-white shadow-md hover:shadow-xl">
       <Link href={`/item/${itemId}`}>
         <img
           src={ogpImage || '/ogp-placeholder.svg'}

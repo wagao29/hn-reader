@@ -5,7 +5,7 @@ const shimmer =
 export function CommentSkeleton() {
   return (
     <div
-      className={`${shimmer} relative h-32 w-full overflow-hidden rounded-xl border-2 border-whitesmoke bg-whitesmoke p-2`}
+      className={`${shimmer} relative h-32 w-full overflow-hidden rounded-xl bg-whitesmoke p-2 shadow-md`}
     ></div>
   );
 }
@@ -13,7 +13,7 @@ export function CommentSkeleton() {
 export function CardSkeleton() {
   return (
     <div
-      className={`${shimmer} grid-item relative col-span-1 h-80 w-80 overflow-hidden rounded-xl border-2 border-whitesmoke bg-whitesmoke p-2`}
+      className={`${shimmer} grid-item relative col-span-1 h-80 w-80 overflow-hidden rounded-xl bg-whitesmoke p-2 shadow-md hover:shadow-xl`}
     ></div>
   );
 }
