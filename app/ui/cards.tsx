@@ -7,7 +7,7 @@ import { Icons } from './icons';
 
 export async function Card({ itemId }: { itemId: ItemId }) {
   const item = await fetchItem(itemId);
-  if (!item) return null;
+  if (!item || item.dead || item.deleted) return null;
 
   const ogpImage = item.url
     ? await fetchOgpImage(item.url)
