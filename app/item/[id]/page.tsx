@@ -6,6 +6,7 @@ import { Comment } from '@/app/ui/comment';
 import { Icons } from '@/app/ui/icons';
 import { CommentSkeleton } from '@/app/ui/skeletons';
 import DOMPurify from 'isomorphic-dompurify';
+import Link from 'next/link';
 import { Suspense } from 'react';
 
 export default async function Page({ params }: { params: { id: ItemId } }) {
@@ -13,8 +14,19 @@ export default async function Page({ params }: { params: { id: ItemId } }) {
   if (!item) return null;
 
   return (
-    <main className="mx-5 my-10 flex flex-col md:mx-20">
-      <h1 className="text-xl">{item.title}</h1>
+    <main className="mx-5 my-10 md:mx-20">
+      {item.url ? (
+        <Link
+          href={item.url}
+          rel="noopener noreferrer"
+          target="_blank"
+          className="text-xl underline-offset-2 hover:underline"
+        >
+          {item.title}
+        </Link>
+      ) : (
+        <h1 className="text-xl">{item.title}</h1>
+      )}
       <div className="flex w-full items-center justify-between text-sm text-gray">
         <Icons score={item.score} descendants={item.descendants} />
         <div className="flex gap-2">
