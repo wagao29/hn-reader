@@ -5,7 +5,7 @@ const shimmer =
 export function CommentSkeleton() {
   return (
     <div
-      className={`${shimmer} relative h-32 w-full overflow-hidden rounded-xl bg-whitesmoke p-2 shadow-md`}
+      className={`${shimmer} relative h-32 w-full overflow-hidden rounded-xl bg-whitesmoke p-2 shadow-md hover:shadow-xl`}
     ></div>
   );
 }

@@ -9,33 +9,23 @@ export async function Comment({ itemId }: { itemId: ItemId }) {
   if (!item || item.dead || item.deleted) return null;
 
   return (
-    <div className="w-full rounded-xl bg-white px-4 pb-2 pt-4 shadow-md">
+    <Link
+      href={`${ORIGIN_URL}/item?id=${itemId}`}
+      rel="noopener noreferrer"
+      target="_blank"
+      className="w-full rounded-xl bg-white px-4 pb-2 pt-4 shadow-md hover:shadow-xl"
+    >
       <div
         dangerouslySetInnerHTML={{
-          __html: DOMPurify.sanitize(item.text),
+          __html: DOMPurify.sanitize(
+            item.text.replace(/<a\b[^>]*>(.*?)<\/a>/g, '<span>$1</span>'),
+          ),
         }}
       />
-      <div className="mt-2 flex justify-between text-sm text-gray">
-        <div className="flex gap-2">
-          <span>{formatTimeAgo(item.time)}</span>
-          <Link
-            className="underline-offset-2 hover:underline"
-            href={`${ORIGIN_URL}/user?id=${item.by}`}
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            {`by ${item.by}`}
-          </Link>
-        </div>
-        <Link
-          className="underline underline-offset-2"
-          href={`${ORIGIN_URL}/item?id=${itemId}`}
-          rel="noopener noreferrer"
-          target="_blank"
-        >
-          read more
-        </Link>
+      <div className="mt-2 flex justify-end gap-2 text-sm text-gray">
+        <span>{formatTimeAgo(item.time)}</span>
+        <span>{`by ${item.by}`}</span>
       </div>
-    </div>
+    </Link>
   );
 }
