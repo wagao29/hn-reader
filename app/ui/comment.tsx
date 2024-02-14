@@ -1,7 +1,7 @@
 import DOMPurify from 'isomorphic-dompurify';
 import Link from 'next/link';
 import { fetchItem } from '../lib/data';
-import { ItemId } from '../lib/definition';
+import { ItemId, ORIGIN_URL } from '../lib/definition';
 import { formatTimeAgo } from '../lib/utils';
 
 export async function Comment({ itemId }: { itemId: ItemId }) {
@@ -15,14 +15,21 @@ export async function Comment({ itemId }: { itemId: ItemId }) {
           __html: DOMPurify.sanitize(item.text),
         }}
       />
-      <div className="flex justify-between text-sm text-gray">
+      <div className="mt-2 flex justify-between text-sm text-gray">
         <div className="flex gap-2">
           <span>{formatTimeAgo(item.time)}</span>
-          <span>{`by ${item.by}`}</span>
+          <Link
+            className="underline-offset-2 hover:underline"
+            href={`${ORIGIN_URL}/user?id=${item.by}`}
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            {`by ${item.by}`}
+          </Link>
         </div>
         <Link
           className="underline underline-offset-2"
-          href={`https://news.ycombinator.com/item?id=${itemId}`}
+          href={`${ORIGIN_URL}/item?id=${itemId}`}
           rel="noopener noreferrer"
           target="_blank"
         >

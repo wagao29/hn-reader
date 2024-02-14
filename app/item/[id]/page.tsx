@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { fetchItem } from '@/app/lib/data';
-import { ItemId } from '@/app/lib/definition';
+import { ItemId, ORIGIN_URL } from '@/app/lib/definition';
 import { formatTimeAgo } from '@/app/lib/utils';
 import { Comment } from '@/app/ui/comment';
 import { Icons } from '@/app/ui/icons';
@@ -31,7 +31,12 @@ export default async function Page({ params }: { params: { id: ItemId } }) {
         <Icons score={item.score} descendants={item.descendants} />
         <div className="flex gap-2">
           <span>{formatTimeAgo(item.time)}</span>
-          <span>{`by ${item.by}`}</span>
+          <Link
+            href={`${ORIGIN_URL}/user?id=${item.by}`}
+            rel="noopener noreferrer"
+            target="_blank"
+            className="underline-offset-2 hover:underline"
+          >{`by ${item.by}`}</Link>
         </div>
       </div>
       <div

@@ -1,6 +1,8 @@
 // Constants
 export const ENDPOINT_URL = 'https://hacker-news.firebaseio.com/v0' as const;
 
+export const ORIGIN_URL = 'https://news.ycombinator.com' as const;
+
 export const PAGE_ITEM_SIZE = 18;
 
 export const STORY_TYPE = ['top', 'new', 'best', 'ask', 'show', 'job'] as const;
