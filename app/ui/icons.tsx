@@ -20,7 +20,7 @@ export function Icons({
           width={24}
           height={24}
         />
-        <span>{descendants}</span>
+        <span>{descendants || 0}</span>
       </div>
     </div>
   );
