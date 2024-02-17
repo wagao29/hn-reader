@@ -3,7 +3,7 @@ export const ENDPOINT_URL = 'https://hacker-news.firebaseio.com/v0' as const;
 
 export const ORIGIN_URL = 'https://news.ycombinator.com' as const;
 
-export const PAGE_ITEM_SIZE = 18;
+export const PAGE_ITEM_SIZE = 15;
 
 export const STORY_REVALIDATION_SEC = 3600;
 
