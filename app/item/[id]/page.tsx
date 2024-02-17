@@ -40,20 +40,23 @@ export default async function Page({ params }: { params: { id: ItemId } }) {
         </div>
       </div>
       <div
-        className="my-5"
+        className="mt-5"
         dangerouslySetInnerHTML={{
           __html: DOMPurify.sanitize(item.text),
         }}
       />
-      <div className="flex flex-col gap-5">
-        {item.kids &&
+      <div className="mt-10 flex flex-col gap-5">
+        {item.kids ? (
           item.kids.map((itemId) => {
             return (
               <Suspense key={itemId} fallback={<CommentSkeleton />}>
                 <Comment itemId={itemId} />
               </Suspense>
             );
-          })}
+          })
+        ) : (
+          <p className="text-center text-lg text-gray">No comments</p>
+        )}
       </div>
     </main>
   );
