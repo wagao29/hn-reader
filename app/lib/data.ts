@@ -1,9 +1,27 @@
 import { JSDOM } from 'jsdom';
-import { ENDPOINT_URL, Item, ItemId, StoryType } from './definition';
+import {
+  ENDPOINT_URL,
+  ITEM_REVALIDATION_SEC,
+  Item,
+  ItemId,
+  STORY_REVALIDATION_SEC,
+  StoryType,
+} from './definition';
 
 export async function fetchStories(story: StoryType): Promise<ItemId[]> {
   try {
-    const response = await fetch(`${ENDPOINT_URL}/${story}stories.json`);
+    const option =
+      story === 'new'
+        ? {
+            cache: 'no-cache' as RequestCache,
+          }
+        : {
+            next: { revalidate: STORY_REVALIDATION_SEC },
+          };
+    const response = await fetch(
+      `${ENDPOINT_URL}/${story}stories.json`,
+      option,
+    );
     if (!response.ok) {
       throw new Error(`[fetchStories] error status code: ${response.status}`);
     }
@@ -16,7 +34,9 @@ export async function fetchStories(story: StoryType): Promise<ItemId[]> {
 
 export async function fetchItem(itemId: ItemId): Promise<Item | undefined> {
   try {
-    const response = await fetch(`${ENDPOINT_URL}/item/${itemId}.json`);
+    const response = await fetch(`${ENDPOINT_URL}/item/${itemId}.json`, {
+      next: { revalidate: ITEM_REVALIDATION_SEC },
+    });
     if (!response.ok) {
       throw new Error(`[fetchItem] error status code: ${response.status}`);
     }
