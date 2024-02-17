@@ -7,11 +7,14 @@ import { Icons } from '@/app/ui/icons';
 import { CommentSkeleton } from '@/app/ui/skeletons';
 import DOMPurify from 'isomorphic-dompurify';
 import Link from 'next/link';
+import { notFound } from 'next/navigation';
 import { Suspense } from 'react';
 
 export default async function Page({ params }: { params: { id: ItemId } }) {
   const item = await fetchItem(params.id);
-  if (!item) return null;
+  if (!item) {
+    notFound();
+  }
 
   return (
     <main className="mx-5 my-10 md:mx-20">
