@@ -11,7 +11,7 @@ export async function Card({ itemId }: { itemId: ItemId }) {
 
   const ogpImage = item.url
     ? await fetchOgpImage(item.url)
-    : '/ogp-placeholder.svg';
+    : '/opengraph-image.png';
 
   return (
     <Link
@@ -19,7 +19,7 @@ export async function Card({ itemId }: { itemId: ItemId }) {
       className="grid-item col-span-1 w-80 rounded-xl bg-white shadow-md hover:shadow-xl"
     >
       <img
-        src={ogpImage || '/ogp-placeholder.svg'}
+        src={ogpImage || '/opengraph-image.png'}
         alt={item.title}
         className="h-40 w-full rounded-t-xl object-cover"
         width={320}
