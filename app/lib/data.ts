@@ -46,7 +46,9 @@ export async function fetchItem(itemId: ItemId): Promise<Item | undefined> {
   }
 }
 
-export async function fetchOgpImage(url: string): Promise<string | undefined> {
+export async function fetchOgpImageUrl(
+  url: string,
+): Promise<string | undefined> {
   try {
     const encodedUri = encodeURI(url);
     const headers = { 'User-Agent': 'bot' };

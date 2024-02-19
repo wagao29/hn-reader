@@ -1,16 +1,17 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from 'next/link';
-import { fetchItem, fetchOgpImage } from '../lib/data';
+import { fetchItem, fetchOgpImageUrl } from '../lib/data';
 import { ItemId } from '../lib/definition';
 import { formatTimeAgo } from '../lib/utils';
 import { Icons } from './icons';
+import { OgpImage } from './ogp-image';
 
 export async function Card({ itemId }: { itemId: ItemId }) {
   const item = await fetchItem(itemId);
   if (!item || item.dead || item.deleted) return null;
 
-  const ogpImage = item.url
-    ? await fetchOgpImage(item.url)
+  const ogpImageUrl = item.url
+    ? await fetchOgpImageUrl(item.url)
     : '/opengraph-image.png';
 
   return (
@@ -18,12 +19,9 @@ export async function Card({ itemId }: { itemId: ItemId }) {
       href={`/item/${itemId}`}
       className="grid-item col-span-1 w-80 rounded-xl bg-white shadow-md hover:shadow-xl"
     >
-      <img
-        src={ogpImage || '/opengraph-image.png'}
-        alt={item.title}
-        className="h-40 w-full rounded-t-xl object-cover"
-        width={320}
-        height={160}
+      <OgpImage
+        title={item.title}
+        url={ogpImageUrl || '/opengraph-image.png'}
       />
       <div className="flex h-40 flex-col justify-between p-2">
         <div className="flex flex-col gap-1">
