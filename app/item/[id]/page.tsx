@@ -17,7 +17,7 @@ export default async function Page({ params }: { params: { id: ItemId } }) {
   }
 
   return (
-    <main className="mx-5 my-10 md:mx-20">
+    <main className="mx-5 my-10 flex-grow md:mx-20">
       {item.url ? (
         <Link
           href={item.url}
