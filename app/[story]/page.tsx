@@ -23,6 +23,10 @@ export default async function Page({
   const itemIds = await fetchStories(params.story);
   const totalPages = Math.ceil(itemIds.length / PAGE_ITEM_SIZE);
 
+  if (currentPage > totalPages) {
+    notFound();
+  }
+
   return (
     <main className="my-10 flex flex-col items-center justify-center gap-10">
       <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">

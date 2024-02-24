@@ -18,7 +18,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} bg-beige antialiased`}>
+      <body
+        className={`${inter.className} flex min-h-screen flex-col bg-beige antialiased`}
+      >
         <header className="flex h-20 flex-col items-center justify-center gap-2 bg-orange">
           <h1 className="text-2xl text-white">HN Reader</h1>
           <NavLinks />
