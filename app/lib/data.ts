@@ -54,7 +54,9 @@ export async function fetchOgpImageUrl(
     const headers = { 'User-Agent': 'bot' };
     const response = await fetch(encodedUri, { headers: headers });
     if (!response.ok) {
-      throw new Error(`[fetchOgpImage] error status code: ${response.status}`);
+      throw new Error(
+        `[fetchOgpImageUrl] error status code: ${response.status}`,
+      );
     }
     const html = await response.text();
     const dom = new JSDOM(html);
