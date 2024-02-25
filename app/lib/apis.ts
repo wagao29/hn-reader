@@ -59,7 +59,7 @@ export async function fetchOgpImageUrl(
     });
     if (!response.ok) {
       throw new Error(
-        `[fetchOgpImageUrl] error status code: ${response.status}`,
+        `[fetchOgpImageUrl] error status code: ${response.status} (${url})`,
       );
     }
     const html = await response.text();
