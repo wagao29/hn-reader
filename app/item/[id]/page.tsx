@@ -1,6 +1,6 @@
-/* eslint-disable @next/next/no-img-element */
-import { fetchItem } from '@/app/lib/data';
-import { ItemId, ORIGIN_URL } from '@/app/lib/definition';
+import { fetchItem } from '@/app/lib/apis';
+import { ORIGIN_URL } from '@/app/lib/constants';
+import { ItemId } from '@/app/lib/types';
 import { formatTimeAgo } from '@/app/lib/utils';
 import { Comment } from '@/app/ui/comment';
 import { Icons } from '@/app/ui/icons';

@@ -1,8 +1,9 @@
 import { Card } from '@/app/ui/cards';
 import { notFound } from 'next/navigation';
 import { Suspense } from 'react';
-import { fetchStories } from '../lib/data';
-import { PAGE_ITEM_SIZE, STORY_TYPE, StoryType } from '../lib/definition';
+import { fetchStories } from '../lib/apis';
+import { PAGE_ITEM_SIZE, STORY_TYPE } from '../lib/constants';
+import { StoryType } from '../lib/types';
 import { validatePageNum } from '../lib/utils';
 import Pagination from '../ui/pagination';
 import { CardSkeleton } from '../ui/skeletons';

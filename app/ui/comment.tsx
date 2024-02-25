@@ -1,7 +1,8 @@
 import DOMPurify from 'isomorphic-dompurify';
 import Link from 'next/link';
-import { fetchItem } from '../lib/data';
-import { ItemId, ORIGIN_URL } from '../lib/definition';
+import { fetchItem } from '../lib/apis';
+import { ORIGIN_URL } from '../lib/constants';
+import { ItemId } from '../lib/types';
 import { formatTimeAgo } from '../lib/utils';
 
 export async function Comment({ itemId }: { itemId: ItemId }) {

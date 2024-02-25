@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from 'next/link';
-import { fetchItem, fetchOgpImageUrl } from '../lib/data';
-import { ItemId } from '../lib/definition';
+import { fetchItem, fetchOgpImageUrl } from '../lib/apis';
+import { ItemId } from '../lib/types';
 import { formatTimeAgo } from '../lib/utils';
 import { Icons } from './icons';
 import { OgpImage } from './ogp-image';

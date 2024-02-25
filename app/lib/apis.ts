@@ -2,11 +2,9 @@ import { JSDOM } from 'jsdom';
 import {
   ENDPOINT_URL,
   ITEM_REVALIDATION_SEC,
-  Item,
-  ItemId,
   STORY_REVALIDATION_SEC,
-  StoryType,
-} from './definition';
+} from './constants';
+import { Item, ItemId, StoryType } from './types';
 
 export async function fetchStories(story: StoryType): Promise<ItemId[]> {
   try {
