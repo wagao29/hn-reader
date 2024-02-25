@@ -1,4 +1,5 @@
 'use client';
+import clsx from 'clsx';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
@@ -21,9 +22,9 @@ export function NavLinks() {
           <Link
             key={link.name}
             href={link.href}
-            className={
-              pathname === link.href ? 'underline underline-offset-4' : ''
-            }
+            className={clsx({
+              'underline underline-offset-4': pathname === link.href,
+            })}
           >
             {link.name}
           </Link>
