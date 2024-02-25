@@ -8,6 +8,8 @@ export const STORY_REVALIDATION_SEC = 3600;
 
 export const ITEM_REVALIDATION_SEC = 60;
 
+export const FETCH_TIMEOUT_MS = 5000;
+
 export const STORY_TYPE = ['top', 'new', 'best', 'ask', 'show', 'job'] as const;
 
 export const ITEM_TYPE = [
