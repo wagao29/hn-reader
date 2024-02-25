@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@heroicons/react": "^2.0.18",
+    "@vercel/analytics": "^1.2.2",
     "autoprefixer": "10.4.15",
     "clsx": "^2.0.0",
     "isomorphic-dompurify": "^2.3.0",
