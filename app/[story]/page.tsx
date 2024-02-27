@@ -1,12 +1,10 @@
-import { Card } from '@/app/ui/cards';
 import { notFound } from 'next/navigation';
-import { Suspense } from 'react';
 import { fetchStories } from '../lib/apis';
 import { PAGE_ITEM_SIZE, STORY_TYPE } from '../lib/constants';
 import { StoryType } from '../lib/types';
 import { validatePageNum } from '../lib/utils';
+import { Grid } from '../ui/grid';
 import Pagination from '../ui/pagination';
-import { CardSkeleton } from '../ui/skeletons';
 
 export default async function Page({
   params,
@@ -20,8 +18,8 @@ export default async function Page({
     notFound();
   }
 
-  const currentPage = validatePageNum(searchParams?.page);
   const itemIds = await fetchStories(params.story);
+  const currentPage = validatePageNum(searchParams?.page);
   const totalPages = Math.ceil(itemIds.length / PAGE_ITEM_SIZE);
 
   if (currentPage > totalPages) {
@@ -30,20 +28,7 @@ export default async function Page({
 
   return (
     <main className="my-10 flex flex-grow flex-col items-center justify-center gap-10">
-      <div className="grid grid-cols-1 gap-10 md:grid-cols-2 xl:grid-cols-3">
-        {itemIds
-          .slice(
-            (currentPage - 1) * PAGE_ITEM_SIZE,
-            currentPage * PAGE_ITEM_SIZE,
-          )
-          .map((itemId) => {
-            return (
-              <Suspense key={itemId} fallback={<CardSkeleton />}>
-                <Card itemId={itemId} />
-              </Suspense>
-            );
-          })}
-      </div>
+      <Grid itemIds={itemIds} currentPage={currentPage} />
       <Pagination totalPages={totalPages} />
     </main>
   );
